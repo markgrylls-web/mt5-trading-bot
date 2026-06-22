@@ -5,8 +5,15 @@ Main bot engine with EMA, FVG, Order Blocks, Support/Resistance, and Orderflow
 """
 
 import sys
+
+# Try to import real MT5, fall back to mock
+try:
+    import MetaTrader5 as mt5
+except ImportError:
+    import mock_mt5 as mt5
+    sys.modules['MetaTrader5'] = mt5
+
 import time
-import MetaTrader5 as mt5
 import pandas as pd
 from datetime import datetime, timedelta
 import signal
