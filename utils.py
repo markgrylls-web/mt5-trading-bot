@@ -82,23 +82,11 @@ class Utils:
         """Convert timeframe string to MT5 enum"""
         timeframes = {
             'M1': mt5.TIMEFRAME_M1,
-            'M2': mt5.TIMEFRAME_M2,
-            'M3': mt5.TIMEFRAME_M3,
-            'M4': mt5.TIMEFRAME_M4,
             'M5': mt5.TIMEFRAME_M5,
-            'M6': mt5.TIMEFRAME_M6,
-            'M10': mt5.TIMEFRAME_M10,
-            'M12': mt5.TIMEFRAME_M12,
             'M15': mt5.TIMEFRAME_M15,
-            'M20': mt5.TIMEFRAME_M20,
             'M30': mt5.TIMEFRAME_M30,
             'H1': mt5.TIMEFRAME_H1,
-            'H2': mt5.TIMEFRAME_H2,
-            'H3': mt5.TIMEFRAME_H3,
             'H4': mt5.TIMEFRAME_H4,
-            'H6': mt5.TIMEFRAME_H6,
-            'H8': mt5.TIMEFRAME_H8,
-            'H12': mt5.TIMEFRAME_H12,
             'D1': mt5.TIMEFRAME_D1,
             'W1': mt5.TIMEFRAME_W1,
             'MN1': mt5.TIMEFRAME_MN1,
@@ -133,24 +121,6 @@ class Utils:
         except Exception as e:
             print(f"Error getting bid/ask: {str(e)}")
             return None, None
-    
-    @staticmethod
-    def pips_to_points(pips, symbol):
-        """Convert pips to points for the given symbol"""
-        try:
-            symbol_info = mt5.symbol_info(symbol)
-            if symbol_info is None:
-                return None
-            
-            # Most forex pairs: 1 pip = 0.0001 (4 decimal places)
-            # JPY pairs: 1 pip = 0.01 (2 decimal places)
-            if 'JPY' in symbol:
-                return pips * 0.01
-            else:
-                return pips * 0.0001
-        except Exception as e:
-            print(f"Error converting pips to points: {str(e)}")
-            return None
     
     @staticmethod
     def format_price(price, symbol):
